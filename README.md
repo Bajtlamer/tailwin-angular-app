@@ -27,11 +27,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 #### Angular:SSR
+
 Build ssr side applicaton bundle:
 `ng build && ng run tailwin-angular-app:server`
+
 Run prerendered:
 `npm run prerender`
+
 Run devel SSR:server:
 `npm run dev:ssr`
+
 Run the production ssr server:
 `npm run serve:ssr`
