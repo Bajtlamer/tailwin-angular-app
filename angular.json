@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tailwin-angular-app",
+            "outputPath": "dist/tailwin-angular-app/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -22,7 +22,8 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/robots.txt"
             ],
             "styles": [
               "src/styles.css"
@@ -91,6 +92,59 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/tailwin-angular-app/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "tailwin-angular-app:build:development",
+              "serverTarget": "tailwin-angular-app:server:development"
+            },
+            "production": {
+              "browserTarget": "tailwin-angular-app:build:production",
+              "serverTarget": "tailwin-angular-app:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tailwin-angular-app:build:production",
+              "serverTarget": "tailwin-angular-app:server:production"
+            },
+            "development": {
+              "browserTarget": "tailwin-angular-app:build:development",
+              "serverTarget": "tailwin-angular-app:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
