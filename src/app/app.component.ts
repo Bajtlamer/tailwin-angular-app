@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tailwin-angular-app';
+  userMenu: boolean = false;
+  hamburgerMenu: boolean = false;
+
+toggleMenu() {
+  this.userMenu = !!!this.userMenu;
+}
+toggleHamburger() {
+  this.hamburgerMenu = !!!this.hamburgerMenu;
+}
 }
